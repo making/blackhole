@@ -1,0 +1,8 @@
+applications:
+- name: blackhole
+  buildpack: java_buildpack
+  memory: 60M
+  path: target/blackhole-1.0.0-SNAPSHOT.jar 
+  env:
+    JAVA_OPTS: '-XX:MaxMetaspaceSize=24M -XX:ReservedCodeCacheSize=16M -XX:CompressedClassSpaceSize=8M -XX:MaxDirectMemorySize=8M -Xss512k'
+    JBP_CONFIG_OPEN_JDK_JRE: '[memory_calculator: {stack_threads: 8}, jre: {version: 11.+}]'
