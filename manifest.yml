@@ -1,6 +1,5 @@
 applications:
 - name: blackhole
-  buildpack: java_buildpack
   memory: 60M
   path: target/blackhole-1.0.0-SNAPSHOT.jar 
   env:
