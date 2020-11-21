@@ -1,5 +1,8 @@
 package am.ik.playground;
 
+import java.net.InetSocketAddress;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
@@ -24,12 +27,15 @@ public class BlackholeHandler {
 	}
 
 	Mono<ServerResponse> accept(ServerRequest req) {
-		ServerWebExchange exchange = req.exchange();
-		ServerHttpRequest request = exchange.getRequest();
+		final ServerWebExchange exchange = req.exchange();
+		final ServerHttpRequest request = exchange.getRequest();
 		return req.bodyToMono(String.class) //
 				.switchIfEmpty(Mono.just("")) //
 				.doOnNext(s -> {
-					log.info("{}\t{}\t{}", request.getMethod(), request.getPath(), s);
+					final String host = Optional.ofNullable(request.getHeaders().getHost())
+							.map(InetSocketAddress::getHostString)
+							.orElse("-");
+					log.info("{}\t{}\t{}\t{}", request.getMethod(), host, request.getPath(), s);
 				}) //
 				.flatMap(__ -> ((request.getMethod() == HttpMethod.GET || request.getMethod() == HttpMethod.HEAD) ? ok() : accepted()).build());
 	}
