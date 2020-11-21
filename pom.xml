@@ -88,6 +88,14 @@
 				</executions>
 				<configuration>
 					<mainClass>${start-class}</mainClass>
+					<docker>
+						<publishRegistry>
+							<username>${env.DOCKER_USERNAME}</username>
+							<password>${env.DOCKER_PASSWORD}</password>
+							<url>${env.DOCKER_REGISTRY}</url>
+							<email>makingx@gmail.com</email>
+						</publishRegistry>
+					</docker>
 				</configuration>
 			</plugin>
 		</plugins>
