@@ -1,7 +1,6 @@
-```
-mvn clean package
-```
+# Blackhole
+A mock http sever that accepts everything and returns nothing for debugging http requests
 
 ```
-java -Xms5m -Xmx5m -XX:MaxMetaspaceSize=24M -XX:ReservedCodeCacheSize=16M -XX:CompressedClassSpaceSize=8M -XX:MaxDirectMemorySize=8M -Xss512k -jar target/blackhole-1.0.0-SNAPSHOT.jar
+docker run --rm -p 8080:8080 ghcr.io/making/blackhole
 ```

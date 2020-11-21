@@ -16,7 +16,7 @@
 	<packaging>jar</packaging>
 
 	<name>blackhole</name>
-	<description>Any HTTP Endpoint for debug</description>
+	<description>A mock http sever that accepts everything and returns nothing for debugging http requests</description>
 
 	<properties>
 		<java.version>11</java.version>
